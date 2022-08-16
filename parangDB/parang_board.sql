@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `parang` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `parang`;
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: localhost    Database: parang
@@ -16,28 +18,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `fishingfloat`
+-- Table structure for table `board`
 --
 
-DROP TABLE IF EXISTS `fishingfloat`;
+DROP TABLE IF EXISTS `board`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fishingfloat` (
+CREATE TABLE `board` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `fishing_float_appearance` varchar(30) NOT NULL,
-  `fishing_float_buoyancy` int NOT NULL,
-  `fishing_category_name` varchar(30) NOT NULL,
+  `board_content` varchar(45) NOT NULL,
+  `board_category` int NOT NULL,
+  `board_writeid` varchar(45) NOT NULL,
+  `board_likes` int NOT NULL,
+  `board_hates` int NOT NULL,
+  `board_views` int NOT NULL,
+  `board_img` varchar(45) NOT NULL,
+  `board_update_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fishingfloat`
+-- Dumping data for table `board`
 --
 
-LOCK TABLES `fishingfloat` WRITE;
-/*!40000 ALTER TABLE `fishingfloat` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fishingfloat` ENABLE KEYS */;
+LOCK TABLES `board` WRITE;
+/*!40000 ALTER TABLE `board` DISABLE KEYS */;
+/*!40000 ALTER TABLE `board` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-16 12:59:04
+-- Dump completed on 2022-08-16 17:54:27
