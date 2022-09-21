@@ -1,0 +1,8 @@
+박재현 변경내역 
+userDTO 생성자 / UserDTO toEntity에 유저 이메일이 없었음 추가 ++
+areaDTO 생성자 / areaDTO to Entity에 areaAddress 없었음 추가 ++
+replyDTO 생성자 / replyDTO to Entity에 replyWriterId 없었음 추가 ++
+================
+DTO/Entity 둘 다 
+userNickName  ++
+userProfilePicture ++
