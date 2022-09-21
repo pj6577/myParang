@@ -6,7 +6,7 @@ Wave_way
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088629906067538/1.png />
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088651548676166/2.png />
 
-<img src="https://img.shields.io/badge/Spring Boot-#6DB33F?style=flat&logo=Spring&logoColor=white" />
+<img src="https://img.shields.io/badge/SpringBoot-#6DB33F?style=flat&logo=Spring&logoColor=white" />
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
 
