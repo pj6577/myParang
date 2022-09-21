@@ -7,7 +7,8 @@ Wave_way
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088651548676166/2.png />
 
 사용 기술
-   <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
 
 팀 노션
 https://www.notion.so/Wave_way-0a1880b74b1b493fb7ccff8ddd645568
