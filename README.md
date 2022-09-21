@@ -3,8 +3,8 @@ Wave_way
 # PaRang
 바다 낚시 정보 웹페이지 프로젝트
 
-<img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088629906067538/1.png>
-
+<img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088629906067538/1.png />
+<img src = https://cdn.discordapp.com/attachments/961574253113782292/1022088651548676166/2.png />
 팀 노션
 https://www.notion.so/Wave_way-0a1880b74b1b493fb7ccff8ddd645568
 
