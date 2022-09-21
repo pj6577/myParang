@@ -1,11 +1,13 @@
 package com.waveway.parang.security;
 
+import com.waveway.parang.config.ConstructorProperties;
 import com.waveway.parang.model.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -18,13 +20,19 @@ import java.util.Date;
 @Service
 // 토큰 생성, 위조여부 확인
 public class TokenProvider {
+    @Autowired
+    private ConstructorProperties cp;
 
-    private static final String SECRET_KEY = "kjdo23suihihiouhoi658ytjhgjhgjhESRERf";
+    private String createSecretKey(){
+        String SECRET_KEY = cp.getJwtSecretKey();
+        return SECRET_KEY;
+    }
 
-    Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    private Key createHmacShaKey(String SECRET_KEY){
 
-
-
+        Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+        return key;
+    }
 
 
     public String create(UserEntity userEntity) {
@@ -35,7 +43,7 @@ public class TokenProvider {
         return Jwts.builder()
                 // 헤더(header)에 들어갈 내용 및 서명을 하기 위한 SECRET_KEY
                 // 시그니처 생성하는 알고리즘 방법, 키 넣어주어야 함
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(createHmacShaKey(createSecretKey()), SignatureAlgorithm.HS256)
                 // 페이로드(payload)에 들어갈 내용
                 .setSubject(Long.toString(userEntity.getUserId()))
                 .setIssuer("parang")
@@ -50,7 +58,7 @@ public class TokenProvider {
 
     public String validateAndGetUserId(String token) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY.getBytes())
+                .setSigningKey(createSecretKey().getBytes())
                 .build()
                 // 암호화된 페이로드를 복호화
                 .parseClaimsJws(token)

@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class FileController {
@@ -22,16 +25,17 @@ public class FileController {
     @Autowired
     AmazonS3Client amazonS3Client;
 
-    @GetMapping("/upload")
-    public ResponseEntity<Object> upload(MultipartFile[] multipartFileList) throws Exception {
+    @PostMapping("/upload")
+    public ResponseEntity<Object> upload(@RequestParam(value = "multiPratFile") MultipartFile[] multipartFileList) throws Exception {
         List<String> imagePathList = new ArrayList<>();
 
         for (MultipartFile multipartFile : multipartFileList) {
-            String originalName = multipartFile.getOriginalFilename(); // 파일 이름
+            String originalName = UUID.randomUUID()+multipartFile.getOriginalFilename(); // 파일 이름
             long size = multipartFile.getSize(); // 파일 크기
 
             ObjectMetadata objectMetaData = new ObjectMetadata();
             objectMetaData.setContentType(multipartFile.getContentType());
+            System.out.println(multipartFile.getContentType());
             objectMetaData.setContentLength(size);
 
             // S3에 업로드

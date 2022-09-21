@@ -7,12 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
 public class FeedDTO {
     private Long boardId;
     private String boardTitle;
@@ -22,29 +22,31 @@ public class FeedDTO {
     private String boardLikes;
     private String boardHates;
     private String boardImg;
-    private Date boardUpdated;
+    private String boardWriterNickName;
+    private String tagIdentifier;
 
     public FeedDTO(final FeedEntity boardEntity) {
         this.boardTitle = boardEntity.getBoardTitle();
+        this.boardWriterNickName = boardEntity.getBoardWriterNickName();
         this.boardContent = boardEntity.getBoardContent();
-        this.boardCategory = boardEntity.getBoardCategory();
         this.boardWriterId = boardEntity.getBoardWriterId();
         this.boardLikes = boardEntity.getBoardLikes();
         this.boardHates = boardEntity.getBoardHates();
         this.boardImg = boardEntity.getBoardImg();
+        this.tagIdentifier = boardEntity.getTagIdentifier();
     }
 
 
-    public static FeedEntity toEntity(final FeedDTO dto) {
+    public static FeedEntity toEntity(final FeedDTO feedDTO) {
         return FeedEntity.builder()
-                .boardTitle(dto.getBoardTitle())
-                .boardContent(dto.getBoardContent())
-                .boardCategory(dto.getBoardCategory())
-                .boardWriterId(dto.getBoardWriterId())
-                .boardLikes(dto.getBoardLikes())
-                .boardHates(dto.getBoardHates())
-                .boardImg(dto.getBoardImg())
-
+                .boardTitle(feedDTO.getBoardTitle())
+                .boardWriterNickName(feedDTO.getBoardWriterNickName())
+                .boardContent(feedDTO.getBoardContent())
+                .boardWriterId(feedDTO.boardWriterId)
+                .boardLikes(feedDTO.getBoardLikes())
+                .boardHates(feedDTO.getBoardHates())
+                .boardImg(feedDTO.getBoardImg())
+                .tagIdentifier(feedDTO.getTagIdentifier())
                 .build();
     }
 }

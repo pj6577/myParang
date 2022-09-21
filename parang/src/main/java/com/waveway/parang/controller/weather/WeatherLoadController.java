@@ -24,7 +24,8 @@ public class WeatherLoadController {
     @PostMapping(value = "/retrieve")
     public ResponseEntity<?> retrieveWeather(@RequestBody WeatherEntity weatherEntity){
         System.out.println("retrieveWeather working!!!!");
-        List<WeatherEntity> weathers = weatherService.retrieve(weatherEntity.getHarborName());
+        System.out.println(weatherEntity.getFcstDate());
+        List<WeatherEntity> weathers = weatherService.retrieve(weatherEntity.getHarborName(), weatherEntity.getFcstDate());
         List<WeatherDTO> dtos = weathers.stream().map(WeatherDTO::new).collect(Collectors.toList());
         System.out.println("" + weathers);
         ResponseDTO<WeatherDTO> response = ResponseDTO.<WeatherDTO>builder().resList(dtos).build();

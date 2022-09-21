@@ -11,8 +11,8 @@ class Date{
 
 export class DateStore{
     rootStore;
+    dates = "";
 
-    dates="";
 
     constructor(root) {
         makeObservable(this, {
@@ -21,10 +21,10 @@ export class DateStore{
         })
 
         this.rootStore = root;
-
+        this.dates=moment(new Date()).format("YYYY-MM-DD");
     }
     changeDate(date){
-        this.dates= date;
+        this.dates= moment(date).format("YYYY-MM-DD");;
         console.log(this.dates);
     }
 }

@@ -1,12 +1,13 @@
 package com.waveway.parang.service.user;
 
+import com.waveway.parang.dto.UserDTO;
 import com.waveway.parang.model.UserEntity;
 import com.waveway.parang.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Slf4j
@@ -16,8 +17,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // 아이디(이메일) 유효성 및 중복검사
 
+    /** 
+     * 아이디 (이메일) 유효성 / 중복검사
+     * */
     public UserEntity create(final UserEntity userEntity) {
         try{
             log.info("createService");
@@ -45,8 +48,9 @@ public class UserService {
     }
 
 
-     //로그인 아이디 & 비밀번호 일치 확인
-
+    /**
+     * 로그인 아이디 & 비밀번호 일치 확인 
+     * */
     public UserEntity getByCredentials(final String userEmail, final String userPassword,
                                        final PasswordEncoder encoder)
     {
@@ -60,9 +64,18 @@ public class UserService {
 
         return null;
     }
-
+    
+    /** 
+     * 회원정보 불러오기
+     * */
     public UserEntity getUserInfo(Long userId) {
         System.out.println(userId);
         return userRepository.findByUserId(userId);
+    }
+
+    @Transactional
+    public void update(Long userId, UserDTO userDTO) {
+        UserEntity findUser = userRepository.findByUserId(userId);
+        findUser.updateInfo(userDTO);
     }
 }

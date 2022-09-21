@@ -7,64 +7,65 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // css import
 import moment from 'moment';
 import { Button } from "@mui/material";
-import { Container } from "@mui/material";
-import { Construction, Key } from '@mui/icons-material';
-import FishingInfoMap from './FishingInfoMap';
-import {useStores} from "../../states/Context";
-import {observer, useObserver} from 'mobx-react';
+import { useStores } from "../../states/Context";
+import { useObserver } from 'mobx-react';
+import axios from 'axios';
+import { API_BASE_URL } from "../../config/API-Config"
 
 
-function useLocationData(){
+
+function useLocationData() {
     const { countyStore } = useStores()
+    const { dateStore } = useStores();
 
-    return useObserver(()=>({
-        counties : countyStore.counties,
-        cities : countyStore.cities,
-        harbors : countyStore.harbors,
-        harbor : countyStore.harbor,
-        county : countyStore.county,
-        city : countyStore.city
+    return useObserver(() => ({
+        dates: dateStore.dates,
+        counties: countyStore.counties,
+        cities: countyStore.cities,
+        harbors: countyStore.harbors,
+        harbor: countyStore.harbor,
+        county: countyStore.county,
+        city: countyStore.city
     }))
 }
 
 const LocationSelect = () => {
-    const { counties, cities, harbors, harbor, city, county } = useLocationData()
-    const {dateStore} = useStores();
-    const {countyStore} = useStores();
+    const { counties, cities, harbors, harbor, city, county, dates } = useLocationData()
+    const { dateStore } = useStores();
+    const { countyStore } = useStores();
     const [dateValue, setDateValue] = useState(new Date());
+
     const targetDateValue = moment(dateValue).format("YYYYMMDD");
+    const dateForTaboo = moment(dateValue).format("YYYY-MM-DD")
 
-    useEffect(()=>{
+    useEffect(() => {
         dateStore.changeDate(targetDateValue);
-    },[dateValue])
 
-
+    }, [dateValue])
 
 
     const onChange = (e) => {
-        //setCity(county[findByKey(county, e.target.value)]);
         countyStore.setCounty(e.target.value);
-
     };
 
     //시군구 onchange
     const finalSelect = (e) => {
         countyStore.setCity(e.target.value);
     };
-    const clearAddress = (e)=>{
+    const clearAddress = (e) => {
         e.preventDefault();
         countyStore.setCounty("");
     }
-
-
-
-        return (
+    return (
 
         <div>
             <Calendar onChange={setDateValue} value={dateValue}
-                      navigationLabel={null}
-                      showNeighboringMonth={true}
+
+                navigationLabel={null}
+                showNeighboringMonth={true}
             />
+
+
 
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-standard-label">도,광역시</InputLabel>
@@ -78,10 +79,9 @@ const LocationSelect = () => {
                     <MenuItem value={"default"} disabled>
                         <em>도,광역시를 선택하세요</em>
                     </MenuItem>
-                    {counties.map((cti, idx)=>{
+                    {counties.map((cti, idx) => {
                         return (
-                            <MenuItem key={idx} value={ Object.keys(cti)[0]}>{ Object.keys(cti)[0]}</MenuItem>
-
+                            <MenuItem key={idx} value={Object.keys(cti)[0]}>{Object.keys(cti)[0]}</MenuItem>
                         )
                     })}
 
@@ -111,9 +111,9 @@ const LocationSelect = () => {
                 <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
-                    onChange={(e)=>{countyStore.setHarbor(e.target.value)}}
+                    onChange={(e) => { countyStore.setHarbor(e.target.value) }}
                     label="항구"
-                    value ={harbor}
+                    value={harbor}
                 >
                     <MenuItem value="default" disabled>
                         <em>항구를 선택하세요</em>
@@ -130,4 +130,4 @@ const LocationSelect = () => {
     );
 
 }
-export default  LocationSelect;
+export default LocationSelect;

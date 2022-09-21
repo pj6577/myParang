@@ -1,5 +1,6 @@
 package com.waveway.parang.dto;
 
+import com.waveway.parang.model.FishingTabooEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,27 +8,38 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Date;
 
-@Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity
-@Table(name = "fishingtaboo")
 public class FishingTabooDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(name="species", length=45, nullable = true)
+    private Long tabooId;
     private String species;
-
-    @Column(name="prohibition_startdate")
-    private Calendar prohibitionStartDate;
-
-    @Column(name="prohibition_enddate")
-    private Calendar prohibitionEndDate;
-
-    @Column(name="prohibition_body")
+    private Date prohibitionStartDate;
+    private Date prohibitionEndDate;
     private Long prohibitionBody;
+    private String speciesImageSrc;
+
+    public FishingTabooDTO(final FishingTabooEntity entity){
+        this.tabooId = entity.getTabooId();
+        this.species = entity.getSpecies();
+        this.prohibitionStartDate = entity.getProhibitionStartDate();
+        this.prohibitionEndDate = entity.getProhibitionEndDate();
+        this.prohibitionBody = entity.getProhibitionBody();
+        this.speciesImageSrc = entity.getSpeciesImageSrc();
+    }
+
+    public static FishingTabooEntity toEntity(final FishingTabooDTO dto){
+        return FishingTabooEntity.builder()
+                .tabooId(dto.getTabooId())
+                .species(dto.getSpecies())
+                .prohibitionStartDate(dto.getProhibitionStartDate())
+                .prohibitionEndDate(dto.getProhibitionEndDate())
+                .prohibitionBody(dto.getProhibitionBody())
+                .speciesImageSrc(dto.getSpeciesImageSrc())
+                .build();
+    }
 }

@@ -16,23 +16,37 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
-import { PagesOutlined } from '@mui/icons-material';
+
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { ReactComponent as ParangLogo } from './parangLogo.svg';
+import { ThemeProvider } from 'styled-components';
+
 
 
 // const pages = ['낚시정보', '피싱스타그램', 'Blog'];
 const pages = [{ title: "낚시정보", link: "/FishingInfo" }, { title: "피싱스타그램", link: "/feedAll" },
-  { title: "글쓰기", link: "/feedwrite" }, { title: "로그인", link: "/signin" },
-  { title: "계정", link: "/mypage" }, { title: "로그아웃", link: "" },]
+   ];  
 
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 export const NavBar = () => {
+
+
   //navigate 초기화
   const navigate = useNavigate();
+
+  const LogOutAct=(e)=>{
+
+    if(e.target.value == 0 ){
+      localStorage.removeItem('Authorization'); 
+      localStorage.removeItem('picture');
+      navigate('/');
+    }
+  }
+
+
 
   //토큰 여부 확인 후 로그인/비로그인 값 isLogIn에 저장
   const [isLogined, setIsLogined] = useState(true);
@@ -104,37 +118,16 @@ export const NavBar = () => {
 
   return (
     //로고 클릭 버튼(이름)
-    <AppBar position="static" style={{ background: '#2E3B55' }}>
-      <Container maxWidth="100vw">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            PARANG
-          </Typography>
+    <AppBar position="static" style={{ background: '#2d3d5e', boxShadow: 'none' }}>
+      <Container maxWidth="100vw"  style={{ zIndex : '5' }}>
+        <Toolbar disableGutters >
+        <ParangLogo style={{ width: '55', fill: 'white' }} onClick={() => { navigate("/") }} />
+        
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-
-
-
-          </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
 
           {/* 메뉴버튼 코드  */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'center' } }}>
             {pages.map((page, idx) => (
 
               <Button
@@ -152,11 +145,11 @@ export const NavBar = () => {
             {/* 프로필 */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={localStorage.getItem("picture")} />
               </IconButton>
             </Tooltip>
             {/* navbar -> login 버튼 // 내 프로필 버튼 변환  */}
-            {isLogined ?
+            {localStorage.getItem("Authorization") === null ?
                 <Menu
                     sx={{ mt: '45px' }}
                     id="menu-appbar"
@@ -173,11 +166,15 @@ export const NavBar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}>
                   <MenuItem  onClick={()=> {navigate("/signin")}}>
-                    <Typography textAlign="center">LogIn</Typography>
+                    <Typography textAlign="center">로그인</Typography>
+                  </MenuItem>
+                  <MenuItem  onClick={()=> {navigate("/signup")}}>
+                    <Typography textAlign="center">회원가입</Typography>
                   </MenuItem>
                 </Menu>   :
                 <Menu
                     sx={{ mt: '45px' }}
+                    name = "logNavBar"
                     id="menu-appbar"
                     anchorEl={anchorElUser}
                     anchorOrigin={{
@@ -192,17 +189,12 @@ export const NavBar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-
-                  {settings.map((setting) => (
-                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
-                      </MenuItem>
-                  ))}
-
+              <MenuItem value="Profile" onClick={()=>{navigate("/mypage")}}>Profile</MenuItem>
+              <MenuItem value="Account">Account</MenuItem>
+              <MenuItem value="Dashboard">Dashboard</MenuItem>
+              <MenuItem name="LogOut" value="Logout" onClick={LogOutAct}>Logout</MenuItem>
                 </Menu>
             }
-
-
           </Box>
 
 

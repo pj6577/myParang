@@ -18,5 +18,5 @@ public interface WeatherRepository extends JpaRepository<WeatherEntity, Long> {
     @Query(value="truncate weather", nativeQuery = true)
     void truncateWeatherTable();
 
-    List<WeatherEntity> findByHarborName(String harborName);
+    List<WeatherEntity> findByHarborNameAndFcstDate(String harborName, String fcstDate);
 }

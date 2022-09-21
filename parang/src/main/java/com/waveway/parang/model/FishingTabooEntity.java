@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Date;
 
 @Builder
 @NoArgsConstructor
@@ -17,17 +18,23 @@ import java.util.Calendar;
 public class FishingTabooEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="taboo_id")
+    private Long tabooId;
 
     @Column(name="species", length=45, nullable = true)
     private String species;
 
     @Column(name="prohibition_startdate")
-    private Calendar prohibitionStartDate;
+    @Temporal(TemporalType.DATE)
+    private Date prohibitionStartDate;
 
+    @Temporal(TemporalType.DATE)
     @Column(name="prohibition_enddate")
-    private Calendar prohibitionEndDate;
+    private Date prohibitionEndDate;
 
     @Column(name="prohibition_body")
     private Long prohibitionBody;
+
+    @Column(name="species_image_src",length = 255)
+    private String speciesImageSrc;
 }

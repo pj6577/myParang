@@ -24,8 +24,8 @@ public class WeatherService {
     }
 
 
-    public List<WeatherEntity> retrieve(final String harborName){
+    public List<WeatherEntity> retrieve(final String harborName, final String fcstDate){
         System.out.println("weather service retrieve hi!!");
-        return repository.findByHarborName(harborName);
+        return repository.findByHarborNameAndFcstDate(harborName, fcstDate);
     }
 }

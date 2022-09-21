@@ -141,12 +141,6 @@ const dateModify = (value) => {
 
 export const WeatherTable = ({ tdWeather }) => {
 
-
-    const inputData = {
-        "harborName": "송정항"
-    }
-    console.log(tdWeather)
-
     const changePcp = (data) => {
         if (data == "강수없음") {
             return "0mm";

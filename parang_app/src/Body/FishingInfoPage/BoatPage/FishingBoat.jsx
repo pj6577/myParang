@@ -1,7 +1,7 @@
 import React from 'react';
 import { BoatCardSection } from './BoatCardSection'
 import { Grid } from '@mui/material'
-import { Container, Box } from '@mui/material';
+import { Box } from '@mui/material';
 
 const FishingBoat = ({ btList }) => {
 

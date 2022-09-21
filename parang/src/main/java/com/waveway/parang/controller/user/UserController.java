@@ -65,7 +65,6 @@ public class UserController {
                     .userProfilePicture(signUp.getUserProfilePicture())
                     .userPNum(signUp.getUserPNum())
                     .userEmail(signUp.getUserEmail())
-                    .userPassword(signUp.getUserPassword())
                     .userAge(signUp.getUserAge())
                     .userSex(signUp.getUserSex())
                     .build();
@@ -123,9 +122,27 @@ public class UserController {
     /**
      * 유저 정보 불러오기
      * */
-    @RequestMapping(value = "/mypage", method = RequestMethod.GET)
+    @RequestMapping(value = "/mypage", method = RequestMethod.POST)
+    public ResponseEntity<?> getUserInfo(@RequestBody UserEntity userEntity){
+
+        UserEntity user = userService.getUserInfo(userEntity.getUserId());
+        System.out.println("hihi" + user.getUserName());
+        final UserDTO responseUserDTO = UserDTO.builder()
+                .userId(user.getUserId())
+                .userName(user.getUserName())
+                .userNickName(user.getUserNickName())
+                .userProfilePicture(user.getUserProfilePicture())
+                .userPNum(user.getUserPNum())
+                .userEmail(user.getUserEmail())
+                .userAge(user.getUserAge())
+                .userSex(user.getUserSex())
+                .build();
+
+        return ResponseEntity.ok().body(responseUserDTO);
+    }
+
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
     public ResponseEntity<?> getUserInfo(@AuthenticationPrincipal Long userId){
-        System.out.println(userId);
 
         UserEntity user = userService.getUserInfo(userId);
 
@@ -143,7 +160,14 @@ public class UserController {
         return ResponseEntity.ok().body(responseUserDTO);
     }
 
+    @PutMapping("/updateinfo")
+    public ResponseEntity<?> updateNickName(@AuthenticationPrincipal Long userId, @RequestBody UserDTO userDTO){
+        log.info("userId : " + userId);
+        log.info(userDTO.getUserNickName());
 
+        userService.update(userId, userDTO);
+        return ResponseEntity.ok().build();
+    }
 }
 
 
