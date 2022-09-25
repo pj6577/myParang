@@ -8,8 +8,8 @@ Wave_way
 
 <!-- <img src="https://img.shields.io/badge/SpringBoot-#6DB33F?style=flat&logo=Spring&logoColor=white" /> -->
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
-
+<!-- <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+ -->
 팀 노션
 https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec
 
