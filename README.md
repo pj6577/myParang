@@ -11,6 +11,6 @@ Wave_way
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
 
 팀 노션
-https://www.notion.so/Wave_way-0a1880b74b1b493fb7ccff8ddd645568
+https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec
 
 
