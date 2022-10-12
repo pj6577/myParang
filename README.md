@@ -12,6 +12,8 @@ https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1029590149954293821/unknown.png />
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1029590441852665869/unknown.png />
 <img src = https://cdn.discordapp.com/attachments/961574253113782292/1029594465695965204/unknown.png />
+<img src = https://cdn.discordapp.com/attachments/961574253113782292/1029594719740768256/unknown.png /> 
+<img src = https://cdn.discordapp.com/attachments/961574253113782292/1029594892688699423/unknown.png />
 <!-- <img src="https://img.shields.io/badge/SpringBoot-#6DB33F?style=flat&logo=Spring&logoColor=white" /> -->
 
 <!-- <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
