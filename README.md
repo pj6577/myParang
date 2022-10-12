@@ -2,6 +2,12 @@ Wave_way
 팀 노션
 
 https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec
+
+
+
+기능별 시연 영상
+https://gigantic-oatmeal-e41.notion.site/9384490de53f4cbfa9498fb038fca4c7
+
 # PaRang
 
 바다 낚시 정보 웹페이지 프로젝트
