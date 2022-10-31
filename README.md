@@ -4,7 +4,7 @@ Wave_way
 
 ###팀 노션
 
-https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec
+[팀 작업노션@Wave_way](https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec)
 
 
 
