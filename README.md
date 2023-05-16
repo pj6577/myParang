@@ -4,7 +4,7 @@ Wave_way
 
 ##
 
-[팀 작업노션@Wave_way](https://gigantic-oatmeal-e41.notion.site/Parang-2e6256851296470b821708ee312eadec)
+[팀 작업노션@Wave_way](https://splashy-clavicle-05b.notion.site/Wave_way-0a1880b74b1b493fb7ccff8ddd645568)
 
 
 
